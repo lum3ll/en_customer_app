@@ -8,6 +8,7 @@ class AppColors {
   static const grey = Color(0xFF757575);
   static const lightGrey = Color(0xFFF5F5F5);
   static const darkGrey = Color(0xFF001C26);
+  static const secondaryTextGray = Color(0xFF354445);
   static const descriptionText = Color(0xFF576D6E);
   static const orange = Color(0xFFFF8100);
   static const error = Color(0xFFDC3545);

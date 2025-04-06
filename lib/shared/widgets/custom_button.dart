@@ -8,6 +8,8 @@ class CustomButton extends StatelessWidget {
   final bool isLoading;
   final Color? backgroundColor;
   final Color? textColor;
+  final double textSize;
+  final double margin;
   final Color? borderColor;
   final double borderWidth;
   final double? width;
@@ -21,6 +23,8 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
     this.backgroundColor,
     this.textColor,
+    this.textSize = 16,
+    this.margin = 24,
     this.borderColor,
     this.borderWidth = 0,
     this.width,
@@ -29,9 +33,10 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: height,
       width: width ?? double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: margin),
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
@@ -61,7 +66,7 @@ class CustomButton extends StatelessWidget {
                   text!,
                   style: TextStyle(
                     fontFamily: 'BalooTamma2',
-                    fontSize: 16,
+                    fontSize: textSize,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1,
                     color: textColor ?? Colors.white,

@@ -28,9 +28,11 @@ class OnboardingScreen extends StatelessWidget {
                   CustomButton(
                     backgroundColor: Colors.white,
                     textColor: AppColors.primary,
+                    textSize: 20,
                     borderWidth: 2,
                     borderColor: AppColors.orange,
                     text: 'INIZIA',
+                    margin: 43,
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(

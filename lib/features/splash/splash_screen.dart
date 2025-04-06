@@ -35,22 +35,14 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(ImagePaths.splashLogo, width: 170),
-            const SizedBox(height: 16),
-            const Text(
-              'e-need',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 120,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.5,
-                height: 0.8,
-              ),
-            ),
+            const SizedBox(height: 24),
+            Image.asset(ImagePaths.splashText, width: 330),
+            const SizedBox(height: 24),
             const Text(
               'te lo portiamo noi',
               style: TextStyle(color: Colors.white, fontSize: 32),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 118),
             Image.asset(ImagePaths.splashIcons, width: 292),
           ],
         ),

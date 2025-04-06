@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/image_paths.dart';
 import '../../shared/widgets/custom_app_bar.dart';
@@ -20,14 +21,14 @@ class LocationPermissionScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(ImagePaths.locationIcon, width: 120, height: 120),
+                  Image.asset(ImagePaths.locationIcon, width: 159),
                   const SizedBox(height: 40),
                   const Text(
                     'Condividi la tua posizione',
                     style: TextStyle(
                       fontFamily: 'BalooTamma2',
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
                       color: Colors.black,
                     ),
                     textAlign: TextAlign.center,
@@ -37,8 +38,8 @@ class LocationPermissionScreen extends StatelessWidget {
                     'La useremo per mostrarti ristoranti, negozi e supermercati nei dintorni e la mappa per ritirare i tuoi ordini',
                     style: TextStyle(
                       fontFamily: 'BalooTamma2',
-                      fontSize: 16,
-                      color: Colors.grey,
+                      fontSize: 18,
+                      color: AppColors.secondaryTextGray,
                     ),
                     textAlign: TextAlign.center,
                   ),

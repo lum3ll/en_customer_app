@@ -1,5 +1,6 @@
 class ImagePaths {
   static const String splashLogo = 'assets/images/splash_screen_logo.png';
+  static const String splashText = 'assets/images/splash_screen_text.png';
   static const String splashIcons = 'assets/images/splash_screen_icons.png';
   static const String splashBackground =
       'assets/images/splash_screen_background.png';
