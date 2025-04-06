@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const RegisterScreen(),
+                          builder: (_) => const EmailVerificationScreen(),
                         ),
                       );
                     },
