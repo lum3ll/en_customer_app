@@ -39,17 +39,16 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Image.asset(
                           ImagePaths.loginLogo,
-                          width: 80,
-                          height: 80,
+                          width: 45,
                         ),
                         const SizedBox(height: 12),
                         const Text(
                           'Ci vorrà solo un minuto',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 28,
                             fontFamily: 'BalooTamma2',
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                           textAlign: TextAlign.center,
                         ),
