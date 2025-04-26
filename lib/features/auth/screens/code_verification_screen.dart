@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/features/address/screens/address_search_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../../shared/widgets/custom_app_bar.dart';
@@ -51,9 +52,15 @@ class CodeVerificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             CustomButton(
-              text: 'Verifica',
+              text: 'VERIFICA',
               onPressed: () {
-                // TODO: Implement code verification
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AddressSearchScreen(),
+                  ),
+                  (route) => false,
+                );
               },
             ),
             const SizedBox(height: 16),

@@ -3,6 +3,7 @@ import '../../../core/constants/input_decorations.dart';
 import '../../../core/constants/text_styles.dart';
 import '../../../shared/widgets/custom_app_bar.dart';
 import '../../../shared/widgets/custom_button.dart';
+import '../../address/screens/service_area_check_screen.dart';
 import 'phone_verification_screen.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
@@ -10,6 +11,8 @@ class EmailVerificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: 'Registrati o accedi con la tua email'),
@@ -27,6 +30,7 @@ class EmailVerificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 72),
             TextFormField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               style: AppTextStyles.inputText,
               decoration: AppInputDecorations.textField(
@@ -37,12 +41,24 @@ class EmailVerificationScreen extends StatelessWidget {
             CustomButton(
               text: 'Accedi',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const PhoneVerificationScreen(),
-                  ),
-                );
+                // Check if the email is the mock email
+                if (emailController.text.trim() == 'luca.mellanocalifano@gmail.com') {
+                  // Navigate to register page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const ServiceAreaCheckScreen(),
+                    ),
+                  );
+                } else {
+                  // Continue with normal flow to phone verification
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PhoneVerificationScreen(),
+                    ),
+                  );
+                }
               },
             ),
           ],

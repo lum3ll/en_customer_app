@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/features/auth/screens/login_screen.dart';
 import 'package:eneed_cust_app/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
@@ -61,7 +62,19 @@ class AccountScreen extends StatelessWidget {
                 _buildMenuItem('Supporto & FAQ', '', onTap: () {}),
                 _buildMenuItem('Lavora con noi', '', onTap: () {}),
                 _buildMenuItem('Informazioni e Privacy', '', onTap: () {}),
-                _buildMenuItem('Esci', '', textColor: Colors.red, onTap: () {}),
+                _buildMenuItem(
+                  'Esci', 
+                  '', 
+                  textColor: Colors.red, 
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const LoginScreen(),
+                        ),
+                    );
+                  },
+                ),
               ]),
               const SizedBox(height: 24),
               Text(

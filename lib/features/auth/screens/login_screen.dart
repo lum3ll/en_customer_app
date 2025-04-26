@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/features/address/screens/address_search_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/image_paths.dart';
@@ -102,12 +103,12 @@ class LoginScreen extends StatelessWidget {
                   const Text('Oppure'),
                   const SizedBox(height: 16),
                   CustomButton(
-                    text: 'Registrati o accedi con la tua mail',
+                    text: 'ACCEDI',
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const EmailVerificationScreen(),
+                          builder: (_) => const AddressSearchScreen(),
                         ),
                       );
                     },
