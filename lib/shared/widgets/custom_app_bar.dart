@@ -4,11 +4,13 @@ import '../../core/constants/colors.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
+  final VoidCallback? onBackPressed;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.actions,
+    this.onBackPressed,
   });
 
   @override
@@ -29,7 +31,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 20,
           ),
         ),
-        onPressed: () => Navigator.pop(context),
+        onPressed: onBackPressed ?? () {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            // Handle the case when there's no screen to pop to
+            Navigator.pushReplacementNamed(context, '/');
+          }
+        },
       ),
       title: Text(
         title,

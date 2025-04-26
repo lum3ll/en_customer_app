@@ -1,8 +1,9 @@
+import 'package:eneed_cust_app/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/address/providers/address_provider.dart';
-import 'features/auth/screens/email_verification_screen.dart';
 import 'core/constants/colors.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const EmailVerificationScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

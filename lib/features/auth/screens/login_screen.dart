@@ -1,12 +1,10 @@
-import 'package:eneed_cust_app/features/address/screens/address_search_screen.dart';
+import 'package:eneed_cust_app/features/auth/screens/email_verification_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/image_paths.dart';
 import '../../../shared/widgets/custom_button.dart';
 import '../../../shared/widgets/wave_clipper.dart';
 import '../../home/screens/home_screen.dart';
-import 'email_verification_screen.dart';
-import 'register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,10 +19,11 @@ class LoginScreen extends StatelessWidget {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                // Updated wave clipper with adjusted height
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    height: 280,
+                    height: 320,
                     color: AppColors.primary,
                     width: double.infinity,
                   ),
@@ -33,23 +32,25 @@ class LoginScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24.0,
-                      vertical: 24.0,
+                      vertical: 40.0, // Increased vertical padding
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Updated logo size and positioning
                         Image.asset(
                           ImagePaths.loginLogo,
-                          width: 45,
+                          width: 46,
+                          height: 64,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
                         const Text(
                           'Ci vorrà solo un minuto',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 28,
-                            fontFamily: 'BalooTamma2',
                             fontWeight: FontWeight.w700,
+                            fontFamily: 'BalooTamma2'
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -58,8 +59,8 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontFamily: 'BalooTamma2',
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'BalooTamma2'
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -103,12 +104,13 @@ class LoginScreen extends StatelessWidget {
                   const Text('Oppure'),
                   const SizedBox(height: 16),
                   CustomButton(
-                    text: 'ACCEDI',
+                    text: 'Registrati o accedi con la tua email',
+                    margin: 0,
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const AddressSearchScreen(),
+                          builder: (_) => const EmailVerificationScreen(),
                         ),
                       );
                     },
@@ -116,6 +118,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   CustomButton(
                     text: 'Prosegui come ospite',
+                    margin: 0,
                     backgroundColor: Colors.white,
                     textColor: AppColors.primary,
                     borderColor: AppColors.primary,
@@ -136,7 +139,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    'Utilizziamo i tuoi dati per offrirti un’esperienza personalizzata e per migliorare il nostro servizio. Per maggiori informazioni leggi qui.',
+                    'Utilizziamo i tuoi dati per offrirti un\'esperienza personalizzata e per migliorare il nostro servizio. Per maggiori informazioni leggi qui.',
                     style: TextStyle(fontSize: 12, color: AppColors.grey),
                     textAlign: TextAlign.center,
                   ),

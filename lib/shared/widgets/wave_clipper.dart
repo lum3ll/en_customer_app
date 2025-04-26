@@ -8,11 +8,11 @@ class WaveClipper extends CustomClipper<Path> {
 
     path.cubicTo(
       size.width * 0,
-      size.height * 0.4,
-      size.width * 0.4,
-      size.height * 0.7,
+      size.height,
+      size.width * 0.3,
+      size.height * 0.82,
       size.width,
-      size.height * 0.7,
+      size.height * 0.82,
     );
 
     path.lineTo(size.width, 0);
