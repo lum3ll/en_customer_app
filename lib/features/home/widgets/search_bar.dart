@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/shared/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 
@@ -18,25 +19,30 @@ class CustomSearchBar extends StatelessWidget {
                 border: Border.all(color: Colors.grey[300]!),
                 borderRadius: BorderRadius.circular(24),
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Ristoranti, spesa, piatti',
-                  hintStyle: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 16,
-                  ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: AppColors.primary,
-                    size: 24,
-                  ),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
-                  ),
-                ),
-              ),
+              // child: TextField(
+              //   decoration: InputDecoration(
+              //     hintText: 'Ristoranti, spesa, piatti',
+              //     hintStyle: TextStyle(
+              //       color: Colors.grey[400],
+              //       fontSize: 16,
+              //     ),
+              //     prefixIcon: Icon(
+              //       Icons.search,
+              //       color: AppColors.primary,
+              //       size: 24,
+              //     ),
+              //     border: InputBorder.none,
+              //     contentPadding: const EdgeInsets.symmetric(
+              //       horizontal: 16,
+              //       vertical: 12,
+              //     ),
+              //   ),
+              // ),
+              child: CustomTextField(
+                label: '',
+                controller: TextEditingController(),
+                placeholder: 'Ristoranti, spesa, piatti',
+              )
             ),
           ),
           const SizedBox(width: 12),
