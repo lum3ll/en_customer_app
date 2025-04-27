@@ -30,6 +30,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/images/navbar/
     - assets/icons/
 
   uses-material-design: true

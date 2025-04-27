@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../../shared/widgets/custom_nav_bar.dart';
 import '../../account/screens/account_screen.dart';
+import '../../address/widgets/address_selection_modal.dart';
 import '../widgets/category_item.dart';
 import '../widgets/partner_card.dart';
 import '../widgets/privacy_policy_modal.dart';
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _selectedIndex = 0;
   int _selectedTab = 0;
+  String _selectedAddress = 'Casa dei nonni'; // Default address
 
   final List<String> _tabs = [
     'Home',
@@ -40,13 +42,20 @@ class _HomeScreenState extends State<HomeScreen> {
     'Ritiro',
   ];
 
+  void _openAddressSelection() {
+    AddressSelectionModal.show(context, (selectedAddress) {
+      setState(() {
+        _selectedAddress = selectedAddress;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          // Wrap Column with SingleChildScrollView
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,27 +65,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const Icon(Icons.location_on, color: AppColors.primary),
                     const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Adesso',
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Casa dei nonni',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            const Icon(Icons.keyboard_arrow_down),
-                          ],
-                        ),
-                      ],
+                    GestureDetector(
+                      onTap: _openAddressSelection,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Adesso',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                _selectedAddress,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              const Icon(Icons.keyboard_arrow_down),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     CircleAvatar(
@@ -102,22 +114,33 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const CustomSearchBar(),
               const SizedBox(height: 16),
-              SizedBox(
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _tabs.length,
-                  itemBuilder: (context, index) {
-                    return TabItem(
-                      label: _tabs[index],
-                      isSelected: _selectedTab == index,
-                      onTap: () {
-                        setState(() {
-                          _selectedTab = index;
-                        });
-                      },
-                    );
-                  },
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Color(0xFFE2EDEE),
+                      width: 1,
+                    ),
+                  ),
+                ),
+                child: SizedBox(
+                  height: 40,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _tabs.length,
+                    itemBuilder: (context, index) {
+                      return TabItem(
+                        label: _tabs[index],
+                        isSelected: _selectedTab == index,
+                        onTap: () {
+                          setState(() {
+                            _selectedTab = index;
+                          });
+                        },
+                      );
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
@@ -284,12 +307,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         status: 'Aperto',
                       ),
                 ),
-              ), // Add bottom padding for floating navbar
+              ),
             ],
           ),
         ),
       ),
-      // Remove the CurvedNavigationBar import and replace bottomNavigationBar with:
       bottomNavigationBar: CustomNavBar(
         selectedIndex: _selectedIndex,
         onTap: (index) {
