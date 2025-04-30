@@ -211,9 +211,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                     ),
                                   ),
                                 ),
-                                
-                                
 
+                                // Pizza in teglia section
+                                _buildPizzaSection(),
+                                
+                                // Cart button
+                                _buildCartButton(),
+                                
                                 // Main content
                                 // Expanded(
                                 //   child: ListView(
@@ -539,7 +543,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         const Divider(height: 1, indent: 16, endIndent: 16),
         _buildPizzaDetailItem(
           name: 'Porcini e salsiccia',
-          ingredients: 'Pomodoro, mozzarella fiordilatte, funghi porcini, salsiccia',
+          ingredients: 'Pomodoro, fiordilatte, funghi porcini, salsiccia',
           price: '9,40 CHF',
           isVegetarian: false,
           isSpicy: false,
@@ -583,8 +587,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                     Text(
                       name,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'BalooTamma2',
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -604,7 +609,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                 Text(
                   ingredients,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
+                    fontFamily: 'BalooTamma2',
                     color: Colors.grey[600],
                   ),
                   maxLines: 2,
@@ -637,9 +643,10 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               Text(
                 price,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: Color(0xFF00B2C5),
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'BalooTamma2',
                 ),
               ),
               const SizedBox(height: 16),
@@ -709,8 +716,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         child: Row(
           children: [
             Container(
-              width: 56,
-              height: 56,
+              width: 48,
+              height: 48,
+              margin: const EdgeInsets.only(left: 4),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
@@ -732,8 +740,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                   'Vedi carrello',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'BalooTamma2',
                   ),
                 ),
               ),
@@ -744,8 +753,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                 '28,20 €',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'BalooTamma2',
                 ),
               ),
             ),
