@@ -1,3 +1,4 @@
+import 'package:eneed_cust_app/features/payment/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
 import '../../../shared/widgets/custom_app_bar.dart';
@@ -68,25 +69,64 @@ class _OrderScreenState extends State<OrderScreen> {
                 _buildSectionTitle('Spese'),
                 _buildServiceFees(),
                 
-                // Total
-                _buildTotalSection(),
+                // Note section
+                _buildSectionTitle('Note'),
+                _buildNoteSection(),
+                
+                // Support section
+                _buildSupportSection(),
+                
+                // Cancel order button
+                _buildCancelOrderButton(),
                 
                 // Space for the bottom button
-                const SizedBox(height: 80),
+                const SizedBox(height: 160),
               ],
             ),
           ),
           
           // Delivery options modal
-          if (_showDeliveryOptions)
-            _buildDeliveryOptionsModal(),
+          // if (_showDeliveryOptions)
+          //   _buildDeliveryOptionsModal(),
           
-          // Bottom payment button
+          // Bottom area with total and payment button
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: _buildPaymentButton(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Total order section
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Totale dell\'ordine',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'BalooTamma2',
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        '31,75 CHF',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'BalooTamma2',
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Payment button
+                _buildPaymentButton(),
+              ],
+            ),
           ),
         ],
       ),
@@ -137,16 +177,17 @@ class _OrderScreenState extends State<OrderScreen> {
                   Text(
                     'Consegna con rider',
                     style: TextStyle(
+                      fontFamily: 'BalooTamma2',
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(height: 4),
                   Text(
                     'fra 20-30 min',
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
+                      fontFamily: 'BalooTamma2',
                     ),
                   ),
                 ],
@@ -168,29 +209,31 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget _buildMinimumOrder() {
     return Container(
       margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFFE0F7F8)),
       ),
       child: Row(
         children: [
-          Icon(Icons.calendar_today_outlined, color: AppColors.primary, size: 20),
+          Icon(Icons.receipt, color: AppColors.primary, size: 20),
           const SizedBox(width: 12),
           const Text(
             'Ordine minimo',
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
+              fontFamily: 'BalooTamma2',
             ),
           ),
-          const Spacer(),
+          const SizedBox(width: 12),
           Text(
             '10,00 CHF',
             style: TextStyle(
-              color: AppColors.primary,
+              color: Colors.black,
               fontWeight: FontWeight.w600,
+              fontFamily: 'BalooTamma2',
               fontSize: 14,
             ),
           ),
@@ -232,6 +275,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 'Subtotale',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
+                  fontFamily: 'BalooTamma2',
                   fontSize: 16,
                 ),
               ),
@@ -239,6 +283,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 '28,20 CHF',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
+                  fontFamily: 'BalooTamma2',
                   fontSize: 16,
                 ),
               ),
@@ -252,13 +297,14 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget _buildCartItem(String name, int quantity, String price) {
     return Row(
       children: [
-        Icon(Icons.local_pizza_outlined, color: Colors.red[300], size: 20),
+        Icon(Icons.delete_outline, color: Colors.red[300], size: 20),
         const SizedBox(width: 12),
         Text(
           '${quantity}x',
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            color: AppColors.primary,
+            fontFamily: 'BalooTamma2',
+            color: Colors.black,
           ),
         ),
         const SizedBox(width: 8),
@@ -267,6 +313,7 @@ class _OrderScreenState extends State<OrderScreen> {
             name,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
+              fontFamily: 'BalooTamma2',
             ),
           ),
         ),
@@ -274,6 +321,7 @@ class _OrderScreenState extends State<OrderScreen> {
           price,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
+            fontFamily: 'BalooTamma2',
           ),
         ),
         const SizedBox(width: 8),
@@ -283,11 +331,7 @@ class _OrderScreenState extends State<OrderScreen> {
           },
           child: Container(
             padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.remove, size: 16),
+            child: const Icon(Icons.remove, size: 18, color: AppColors.primary),
           ),
         ),
         const SizedBox(width: 8),
@@ -297,11 +341,7 @@ class _OrderScreenState extends State<OrderScreen> {
           },
           child: Container(
             padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.add, size: 16, color: Colors.white),
+            child: const Icon(Icons.add, size: 18, color: AppColors.primary),
           ),
         ),
       ],
@@ -482,6 +522,7 @@ class _OrderScreenState extends State<OrderScreen> {
             'Spese di servizio',
             style: TextStyle(
               fontWeight: FontWeight.w500,
+              fontFamily: 'BalooTamma2',
               fontSize: 16,
             ),
           ),
@@ -489,6 +530,7 @@ class _OrderScreenState extends State<OrderScreen> {
             '1,05 CHF',
             style: TextStyle(
               fontWeight: FontWeight.w600,
+              fontFamily: 'BalooTamma2',
               fontSize: 16,
             ),
           ),
@@ -497,30 +539,98 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildTotalSection() {
+  Widget _buildNoteSection() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.grey.shade200),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
-            'Totale dell\'ordine',
+      child: TextField(
+        maxLines: 5,
+        decoration: InputDecoration(
+          hintText: 'Inserisci una nota per il tuo ordine',
+          hintStyle: TextStyle(
+            color: Colors.grey[400],
+            fontSize: 14,
+            fontFamily: 'BalooTamma2',
+          ),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(16)
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSupportSection() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Hai bisogno di aiuto con il tuo ordine?',
             style: TextStyle(
-              fontWeight: FontWeight.w700,
               fontSize: 18,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'BalooTamma2',
             ),
           ),
-          Text(
-            '31,75 CHF',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 18,
+          const SizedBox(height: 16),
+          // Chat with operator button
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                // Chat with operator action
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              ),
+              child: const Text(
+                'Chatta con un nostro operatore',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontFamily: 'BalooTamma2',
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Request assistance button
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                // Request assistance action
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: AppColors.primary,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                  side: BorderSide(color: AppColors.primary),
+                ),
+              ),
+              child: const Text(
+                'Invia una richiesta di assistenza',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontFamily: 'BalooTamma2',
+                ),
+              ),
             ),
           ),
         ],
@@ -528,174 +638,26 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  Widget _buildDeliveryOptionsModal() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _showDeliveryOptions = false;
-        });
-      },
-      child: Container(
-        color: Colors.black.withOpacity(0.5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Header with close button
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Consegna, quando e come',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _showDeliveryOptions = false;
-                            });
-                          },
-                          child: Text(
-                            'Chiudi',
-                            style: TextStyle(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  
-                  // Delivery options tabs
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: AppColors.primary,
-                                width: 2,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Consegna con rider',
-                              style: TextStyle(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: const Center(
-                            child: Text(
-                              'Ritiro in autonomia',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  
-                  // Delivery time options
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // ASAP option
-                        Row(
-                          children: [
-                            Radio<bool>(
-                              value: true,
-                              groupValue: _isDeliveryNow,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isDeliveryNow = value!;
-                                });
-                              },
-                              activeColor: AppColors.primary,
-                            ),
-                            const Text(
-                              'Adesso, prima possibile',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        
-                        // Scheduled option
-                        Row(
-                          children: [
-                            Radio<bool>(
-                              value: false,
-                              groupValue: _isDeliveryNow,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isDeliveryNow = value!;
-                                });
-                              },
-                              activeColor: AppColors.primary,
-                            ),
-                            const Text(
-                              'Programma la consegna',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  
-                  // Bottom indicator
-                  Center(
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 16),
-                      width: 40,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+  Widget _buildCancelOrderButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Center(
+        child: TextButton(
+          onPressed: () {
+            // Cancel order action
+          },
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.red,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          ),
+          child: const Text(
+            'Annulla ed elimina ordine',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              fontFamily: 'BalooTamma2',
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -707,29 +669,55 @@ class _OrderScreenState extends State<OrderScreen> {
       padding: EdgeInsets.only(
         left: 16,
         right: 16,
-        top: 16,
+        top: 8,
         bottom: 16 + MediaQuery.of(context).padding.bottom,
       ),
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigate to payment
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 4,
+            width: 40,
+            margin: const EdgeInsets.only(bottom: 8),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(2),
+            ),
           ),
-        ),
-        child: const Text(
-          'Vai al pagamento',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentScreen(
+                      totalAmount: 31.75,
+                      deliveryAddress: 'Via Antonio Ciseri 30, Locarno, 20121',
+                    ),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+              ),
+              child: const Text(
+                'Vai al pagamento',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontFamily: 'BalooTamma2',
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

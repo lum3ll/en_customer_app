@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
 
   const CustomTextField({
     super.key,
-    required this.label,
+    this.label = '',
     this.placeholder,  
     required this.controller,
     this.validator,
