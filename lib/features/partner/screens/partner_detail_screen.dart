@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
+import '../../../shared/widgets/custom_cart_button.dart';
 import 'partner_reviews_screen.dart';
 
 class PartnerDetailScreen extends StatefulWidget {
@@ -216,7 +217,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                 _buildPizzaSection(),
                                 
                                 // Cart button
-                                _buildCartButton(),
+                                const CustomCartButton(),
                                 
                                 // Main content
                                 // Expanded(
@@ -703,66 +704,4 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
       ),
     );
   }
-
-  Widget _buildCartButton() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        height: 56,
-        decoration: BoxDecoration(
-          color: AppColors.primary,
-          borderRadius: BorderRadius.circular(28),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              margin: const EdgeInsets.only(left: 4),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: const Center(
-                child: Text(
-                  '3',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const Expanded(
-              child: Center(
-                child: Text(
-                  'Vedi carrello',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'BalooTamma2',
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(right: 16),
-              child: const Text(
-                '28,20 €',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'BalooTamma2',
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  
 }

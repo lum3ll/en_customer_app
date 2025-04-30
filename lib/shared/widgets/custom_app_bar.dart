@@ -3,12 +3,14 @@ import '../../core/constants/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool centerTitle;
   final List<Widget>? actions;
   final VoidCallback? onBackPressed;
 
   const CustomAppBar({
     super.key,
     required this.title,
+    this.centerTitle = true,
     this.actions,
     this.onBackPressed,
   });
@@ -18,6 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
+      actionsPadding: EdgeInsets.symmetric(horizontal: 16),
       leading: IconButton(
         icon: Container(
           padding: const EdgeInsets.all(8),
@@ -48,7 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      centerTitle: true,
+      centerTitle: centerTitle,
       actions: actions,
     );
   }
