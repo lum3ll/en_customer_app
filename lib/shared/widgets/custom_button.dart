@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
   final double borderWidth;
   final double? width;
+  final double? padding;
   final double height;
 
   const CustomButton({
@@ -28,6 +29,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     this.borderWidth = 0,
     this.width,
+    this.padding,
     this.height = 56,
   }) : assert(text != null || child != null, 'Either text or child must be provided');
 
@@ -37,6 +39,7 @@ class CustomButton extends StatelessWidget {
       height: height,
       width: width ?? double.infinity,
       margin: EdgeInsets.symmetric(horizontal: margin),
+      padding: EdgeInsets.symmetric(horizontal: padding ?? 0),
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(

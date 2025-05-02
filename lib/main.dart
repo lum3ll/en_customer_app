@@ -1,8 +1,11 @@
+import 'package:eneed_cust_app/features/account/screens/account_screen.dart';
+import 'package:eneed_cust_app/features/home/screens/home_screen.dart';
 import 'package:eneed_cust_app/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/address/providers/address_provider.dart';
 import 'core/constants/colors.dart';
+import 'features/order/screens/order_list_screen.dart';
 
 
 void main() {
@@ -60,6 +63,12 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: const SplashScreen(),
+        routes: {
+          '/home': (context) => const HomeScreen(),
+          '/orders': (context) => const OrderListScreen(),
+          '/account': (context) => const AccountScreen(),
+          // Add other routes as needed
+        },
       ),
     );
   }

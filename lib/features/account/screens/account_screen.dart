@@ -1,4 +1,5 @@
 import 'package:eneed_cust_app/features/auth/screens/login_screen.dart';
+import 'package:eneed_cust_app/features/order/screens/order_list_screen.dart';
 import 'package:eneed_cust_app/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
@@ -20,7 +21,14 @@ class AccountScreen extends StatelessWidget {
                 _buildMenuItem(
                   'Ordini',
                   'assets/icons/receipt.png',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OrderListScreen(),
+                      ),
+                    );
+                  },
                 ),
                 _buildMenuItem(
                   'Preferiti',

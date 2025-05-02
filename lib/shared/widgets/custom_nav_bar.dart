@@ -1,4 +1,6 @@
 import 'package:eneed_cust_app/features/cart/screens/cart_screen.dart';
+import 'package:eneed_cust_app/features/home/screens/home_screen.dart';
+import 'package:eneed_cust_app/features/order/screens/order_list_screen.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/colors.dart';
 
@@ -49,7 +51,10 @@ class CustomNavBar extends StatelessWidget {
               _NavBarItem(
                 imagePath: 'assets/images/navbar/home_icon.png',
                 isSelected: selectedIndex == 0,
-                onTap: () => onTap(0),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                ),
               ),
               _NavBarItem(
                 imagePath: 'assets/images/navbar/search_icon.png',
@@ -59,7 +64,10 @@ class CustomNavBar extends StatelessWidget {
               _NavBarItem(
                 imagePath: 'assets/images/navbar/orders_icon.png',
                 isSelected: selectedIndex == 2,
-                onTap: () => onTap(2),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderListScreen()),
+                ),
               ),
               _NavBarItem(
                 imagePath: 'assets/images/navbar/fav_icon.png',
